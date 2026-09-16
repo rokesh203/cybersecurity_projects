@@ -1,0 +1,9 @@
+# Memory dumps
+memory_dumps/
+
+# Python virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
