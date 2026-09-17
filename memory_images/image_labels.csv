@@ -1,0 +1,3 @@
+event_id,filename,label,perf_start,perf_end,notes
+evt_20260917_222113_normal,evt_20260917_222113_normal_normal.png,0,2026-09-17 22:21:15,2026-09-17 22:22:15,normal idle desktop
+evt_20260917_223024_suspicious,evt_20260917_223024_suspicious_suspicious.png,1,2026-09-17 22:30:24,2026-09-17 22:31:27,benign stress test

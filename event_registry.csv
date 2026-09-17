@@ -1,0 +1,3 @@
+event_id,label,label_name,perf_start,perf_end,dump_file,image_file,notes
+evt_20260917_222113_normal,0,normal,2026-09-17 22:21:15,2026-09-17 22:22:15,evt_20260917_222113_normal_20260917_222215.dmp,evt_20260917_222113_normal_normal.png,normal idle desktop
+evt_20260917_223024_suspicious,1,suspicious,2026-09-17 22:30:24,2026-09-17 22:31:27,evt_20260917_223024_suspicious_20260917_223127.dmp,evt_20260917_223024_suspicious_suspicious.png,benign stress test (recovered from crash)
