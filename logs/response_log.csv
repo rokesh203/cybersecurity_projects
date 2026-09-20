@@ -1,0 +1,7 @@
+timestamp,event_id,label,confidence,level,actions_taken,confirmed_by_user,notes
+2026-09-18 18:18:53,test_monitor,0,0.35,MONITOR,logged,False,[SIMULATED] confidence=35%
+2026-09-18 18:18:53,test_alert,1,0.7,ALERT,logged|alert_written,False,[SIMULATED] confidence=70%
+2026-09-18 18:18:54,test_isolate,1,0.88,ISOLATE,logged|alert_written|isolation_proposed,False,[SIMULATED] confidence=88%
+2026-09-18 18:32:08,evt_20260917_222113_normal,0,0.376,MONITOR,logged,False,Classified as normal (38% confidence). No significant LSTM anomalies. Memory image texture intensity: 0.99.
+2026-09-18 18:37:21,evt_20260917_222113_normal,0,0.376,MONITOR,logged,False,Classified as normal (38% confidence). No significant LSTM anomalies. Memory image texture intensity: 0.99.
+2026-09-20 06:27:08,evt_20260917_222113_normal,1,0.8975,ISOLATE,logged|alert_written|isolation_proposed,False,Flagged as suspicious (90% confidence) due to high CPU usage (SHAP rank 1) and elevated Process count (rank 2); memory image shows anomalous texture (Hottest region: lower-right quadrant (pixel rows 1

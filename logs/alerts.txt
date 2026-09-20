@@ -1,0 +1,15 @@
+
+============================================================
+[2026-09-18 18:18:53] ALERT  event=test_alert  confidence=70.00%
+[SIMULATED] confidence=70%
+============================================================
+
+============================================================
+[2026-09-18 18:18:54] ALERT  event=test_isolate  confidence=88.00%
+[SIMULATED] confidence=88%
+============================================================
+
+============================================================
+[2026-09-20 06:27:08] ALERT  event=evt_20260917_222113_normal  confidence=89.75%
+Flagged as suspicious (90% confidence) due to high CPU usage (SHAP rank 1) and elevated Process count (rank 2); memory image shows anomalous texture (Hottest region: lower-right quadrant (pixel rows 192-256, cols 128-192) -- approx, intensity 0.98).
+============================================================

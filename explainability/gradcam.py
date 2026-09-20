@@ -138,25 +138,26 @@ def _compute_gradcam(cnn_extractor_model, image_arr: np.ndarray) -> np.ndarray:
 def _heatmap_to_overlay(image_arr: np.ndarray, heatmap: np.ndarray) -> np.ndarray:
     """
     Blend the grayscale memory image with the Grad-CAM heatmap.
+    Uses pure PIL/NumPy — no matplotlib required.
 
     image_arr : (1, 256, 256, 1) float32
     heatmap   : (256, 256) float32 [0,1]
     Returns   : (256, 256, 3) uint8 RGB overlay
     """
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    import matplotlib.cm as cm
+    # Grayscale image -> RGB  (256,256,3)
+    img_gray = image_arr[0, :, :, 0]               # float32 [0,1]
+    img_rgb  = np.stack([img_gray] * 3, axis=-1)   # (256,256,3)
 
-    # Grayscale image -> RGB
-    img_gray = image_arr[0, :, :, 0]               # (256, 256) float32
-    img_rgb  = np.stack([img_gray]*3, axis=-1)      # (256, 256, 3)
+    # Jet-like colormap via lookup: low=blue, mid=green, high=red
+    h = heatmap                                     # (256,256) float32 [0,1]
+    r = np.clip(1.5 - np.abs(h * 4.0 - 3.0), 0, 1)
+    g = np.clip(1.5 - np.abs(h * 4.0 - 2.0), 0, 1)
+    b = np.clip(1.5 - np.abs(h * 4.0 - 1.0), 0, 1)
+    colormap = np.stack([r, g, b], axis=-1)         # (256,256,3) float32
 
-    # Colormap for heatmap (red = hot)
-    colormap  = cm.jet(heatmap)[:, :, :3]           # (256, 256, 3) float32
-    overlay   = 0.5 * img_rgb + 0.5 * colormap     # blend
-    overlay   = np.clip(overlay * 255, 0, 255).astype(np.uint8)
-    return overlay
+    # Alpha-blend: 50% original image, 50% colormap
+    overlay = 0.5 * img_rgb + 0.5 * colormap
+    return np.clip(overlay * 255, 0, 255).astype(np.uint8)
 
 
 def _describe_hotspot(heatmap: np.ndarray) -> str:
@@ -182,7 +183,7 @@ def _describe_hotspot(heatmap: np.ndarray) -> str:
 
     return (
         f"Hottest region: {region} (pixel rows {best_r}-{best_r+win}, "
-        f"cols {best_c}-{best_c+win}) — "
+        f"cols {best_c}-{best_c+win}) -- "
         f"approx. memory offset 0x{byte_start * 256:08X}"
     )
 

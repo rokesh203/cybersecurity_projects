@@ -102,27 +102,31 @@ def explain_lstm(
     perf_sequence: np.ndarray,
     ctx: dict,
     background_data: np.ndarray | None = None,
+    use_shap: bool = False,
 ) -> dict:
     """
-    Compute SHAP feature importance for one performance sequence.
+    Compute feature importance for one performance sequence.
 
     Parameters
     ----------
     perf_sequence  : np.ndarray shape (SEQUENCE_LENGTH, num_features)
                      Already preprocessed (scaled 0-1).
     ctx            : model context from models.inference.load_models()
-    background_data: optional array shape (N, SEQUENCE_LENGTH, num_features)
-                     for the SHAP background distribution.
-                     If None, a zero-baseline is used.
+    background_data: optional array for SHAP background (ignored if use_shap=False)
+    use_shap       : if True, use SHAP KernelExplainer (accurate but slow ~3-5 min).
+                     if False (default), use gradient-based importance (fast, <1s).
 
     Returns
     -------
     dict with keys:
-        shap_values   (ndarray shape 5) : mean absolute SHAP per feature
+        shap_values   (ndarray shape 5) : mean absolute importance per feature
         feature_names (list of 5 str)
         top_features  (list of tuples (name, value) sorted by |value| desc)
         text_summary  (str)
     """
+    if not use_shap:
+        return _shap_unavailable_fallback(perf_sequence, ctx)
+
     try:
         import shap
     except ImportError:

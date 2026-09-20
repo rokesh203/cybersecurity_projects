@@ -1,0 +1,63 @@
+================================================================
+  HyperMD-Enhanced -- Model Evaluation Report
+  Generated: 2026-09-19 21:51:36
+================================================================
+
+================================================================
+  Model: LSTM (Time-Series)
+  Samples: 145
+================================================================
+  Accuracy : 0.4207
+  ROC AUC  : 0.6173
+  Avg Prec : 0.4567
+
+  Classification Report:
+    normal            P=0.492  R=0.744  F1=0.592  N=82
+    suspicious        P=0.000  R=0.000  F1=0.000  N=63
+    macro avg         P=0.246  R=0.372  F1=0.296  N=145
+    weighted avg      P=0.278  R=0.421  F1=0.335  N=145
+
+  Confusion Matrix:
+              Pred:Normal  Pred:Susp
+    True:Normal           61         21
+    True:Susp            63          0
+
+================================================================
+  Model: CNN (Memory Image)
+  Samples: 2
+================================================================
+  Accuracy : 0.5000
+  ROC AUC  : 1.0000
+  Avg Prec : 1.0000
+
+  Classification Report:
+    normal            P=0.500  R=1.000  F1=0.667  N=1
+    suspicious        P=0.000  R=0.000  F1=0.000  N=1
+    macro avg         P=0.250  R=0.500  F1=0.333  N=2
+    weighted avg      P=0.250  R=0.500  F1=0.333  N=2
+
+  Confusion Matrix:
+              Pred:Normal  Pred:Susp
+    True:Normal            1          0
+    True:Susp             1          0
+
+================================================================
+  Model: Fusion Model
+  Samples: 2
+================================================================
+  Accuracy : 1.0000
+  ROC AUC  : 1.0000
+  Avg Prec : 1.0000
+
+  Classification Report:
+    normal            P=1.000  R=1.000  F1=1.000  N=1
+    suspicious        P=1.000  R=1.000  F1=1.000  N=1
+    macro avg         P=1.000  R=1.000  F1=1.000  N=2
+    weighted avg      P=1.000  R=1.000  F1=1.000  N=2
+
+  Confusion Matrix:
+              Pred:Normal  Pred:Susp
+    True:Normal            1          0
+    True:Susp             0          1
+
+================================================================
